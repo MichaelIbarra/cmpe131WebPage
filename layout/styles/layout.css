@@ -237,9 +237,9 @@ body{color:#676767; background-color:#222222;}
 a{color:#43BFCB;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
-label span{color:#FF0000; background-color:inherit;}
+label span{color:#000000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#43BFCB;}
-.overlay{color:#F37370; background-color:inherit;}
+.overlay{color:#000000; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
 
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#43BFCB; border-color:#43BFCB;}

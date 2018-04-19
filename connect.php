@@ -10,9 +10,38 @@
  $password = filter_input(INPUT_POST, 'password');
  echo "password: $password\n";
  $cpassword = filter_input(INPUT_POST, 'cpassword');
+ 
  	if(!empty($firstname) && !empty($lastname) && !empty($zipcode) && !empty($email) && !empty($password) && !empty($cpassword) &&
 		 $password == $cpassword)
 	{
+		$firstname = test_input($_POST["firstname"]);
+		if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
+  		$nameErr = "Only letters and white space allowed"; 
+		echo "Wrong format of first name. $nameErr\n";
+		die();
+		}
+
+		$lastname = test_input($_POST["lastname"]);
+ 		if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
+ 		 $nameErr = "Only letters and white space allowed"; 
+		 echo "Wrong format of last name. $nameErr\n";
+		die();
+		}
+
+		$zipcode = test_input($_POST["zipcode"]);
+ 		if (!preg_match("/^[0-9]*$/",$zipcode)) {
+  		$zipErr = "Only numbers allowed";
+		echo "Wrong format of zipcode. $zipErr\n";
+		die(); 
+		}
+
+ 		$email = test_input($_POST["email"]);
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  		$emailErr = "Invalid email format"; 
+		echo $emailErr;
+		die();
+		}
+		
 		$host = "localhost";
 		$username = "root";
         $pw = "";
@@ -55,4 +84,11 @@
 		echo "Fill in all the areas";
 		die();
 	}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 ?>
