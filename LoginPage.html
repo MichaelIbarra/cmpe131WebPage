@@ -65,25 +65,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="content" align="center">
     <h1>Login</h1>
-    <form>  
-      <p>First Name:  </p>
-      <p>
-        <input type="text" name="fname">
+    <form method="post" action="accessUser.php">  
+      <p>E-mail:</p>
+      <p style="color:black"><input type="text" name="email"></p>
         <br>
-      Last Name: </p>
-      <p>
-        <input type="text" name="lname">
+      <p>Password: </p>
+      <p style="color:black"><input type="password" name="password"></p>
         <br>
-      E-mail:</p>
-      <p>
-  <input type="text" name="email">
-        <br>
-      Password: </p>
-      <p>
-        <input type="text" name="password">
-        <br>
-        <footer><a class="btn" href="#">LOGIN</a></footer>
-      </p>
+      <p style="color:black"><input type="submit" value="Submit"/></p>
     </form>
     </div>
     <h2>Don't have an account?</h2>

@@ -65,29 +65,26 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="content" align="center">
     <h1>Register</h1>
-    <form>  
+    <form method="POST" action="connect.php">  
       <p>First Name:  </p>
-      <p>
-        <input type="text" name="fname">
+        <p style="color:black"><input type="text" name="firstname"></p>
         <br>
-      Last Name:</p>
-      <p>
-  <input type="text" name="lname">
+      <p>Last Name:</p>
+  		<p style="color:black"><input type="text" name="lastname"></p>
         <br>
-      E-mail: </p>
-      <p>
-        <input type="text" name="email">
+      <p>Zip Code:</p>
+      	<p style="color:black"><input type="text" name="zipcode"></p>
+      	<br>
+      <p>E-mail: </p>
+        <p style="color:black"><input type="text" name="email"></p>
         <br>
-      Password:</p>
-      <p>
-  <input type="text" name="password">
+      <p>Password:</p>
+  		<p style="color:black"><input type="password" name="password"></p>
         <br>
-      Confirm Password: </p>
-      <p>
-        <input type="text" name="cpassword">
+      <p>Confirm Password: </p>
+        <p style="color:black"><input type="password" name="cpassword"></p>
         <br>
-      <footer><a class="btn inverse" href="#">REGISTER</a></footer>
-      </p>  
+       <p style="color:black"><input type="submit" value="Submit"></p> 
     </form>
     </div>
     <h2>Already have an account?</h2>
