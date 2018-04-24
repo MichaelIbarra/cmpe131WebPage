@@ -5,7 +5,7 @@
  }
 
  $email = $_POST['c_email'];
- $sql = "SELECT firstname, lastname, email, zipcode FROM users WHERE c_email='$email'";
+ $sql = "SELECT firstname, lastname, email, zipcode FROM Users WHERE c_email='$email'";
  $result = $conn->query($sql);
 
  if($result -> num_rows >0){

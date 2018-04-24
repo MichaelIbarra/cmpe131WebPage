@@ -15,7 +15,7 @@ if(isset($_POST['search'])) {
         } else{
           //echo "searchq: $searchq\n";
 
-          $query = $conn->query("SELECT * FROM Books WHERE isbn LIKE '%$searchq%' OR bookname LIKE '%$searchq%'") or die("could not search :/");
+          $query = $conn->query("SELECT * FROM books WHERE ISBNNumber LIKE '%$searchq%' OR bookName LIKE '%$searchq%'") or die("could not search :/");
           $count = $query->num_rows;
           //echo "$count\n";
           if ($count == 0){
@@ -30,8 +30,8 @@ if(isset($_POST['search'])) {
             for($i=0; $i<$count; $i++){
               $query->data_seek($i);
               $row = $query->fetch_array(MYSQLI_ASSOC);
-              echo $row['isbn'] . '<br>';
-              echo $row['bookname'] . '<br><br>';
+              echo $row['ISBNNumber'] . '<br>';
+              echo $row['bookName'] . '<br><br>';
 
             }
           }

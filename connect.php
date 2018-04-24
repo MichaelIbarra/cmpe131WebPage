@@ -1,4 +1,6 @@
 <?php
+session_start();
+
  $firstname = filter_input(INPUT_POST, 'firstname');
  echo "first name: $firstname\n";
  $lastname = filter_input(INPUT_POST, 'lastname');
@@ -11,34 +13,47 @@
  echo "password: $password\n";
  $cpassword = filter_input(INPUT_POST, 'cpassword');
  
- 	if(!empty($firstname) && !empty($lastname) && !empty($zipcode) && !empty($email) && !empty($password) && !empty($cpassword) &&
-		 $password == $cpassword)
+ 	if(!empty($firstname) && !empty($lastname) && !empty($zipcode) && !empty($email) && !empty($password) && !empty($cpassword))
+	{
+	if($password == $cpassword)
 	{
 		$firstname = test_input($_POST["firstname"]);
 		if (!preg_match("/^[a-zA-Z ]*$/",$firstname)) {
   		$nameErr = "Only letters and white space allowed"; 
-		echo "Wrong format of first name. $nameErr\n";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Wrong format of first name. $nameErr')
+			window.location.href='RegPage.php'
+        	</SCRIPT>");
 		die();
 		}
 
 		$lastname = test_input($_POST["lastname"]);
  		if (!preg_match("/^[a-zA-Z ]*$/",$lastname)) {
  		 $nameErr = "Only letters and white space allowed"; 
-		 echo "Wrong format of last name. $nameErr\n";
+		 echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Wrong format of last name. $nameErr')
+			window.location.href='RegPage.php'
+        	</SCRIPT>");
 		die();
 		}
 
 		$zipcode = test_input($_POST["zipcode"]);
  		if (!preg_match("/^[0-9]*$/",$zipcode)) {
   		$zipErr = "Only numbers allowed";
-		echo "Wrong format of zipcode. $zipErr\n";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Wrong format of zip code. $zipErr')
+			window.location.href='RegPage.php'
+        	</SCRIPT>");
 		die(); 
 		}
 
  		$email = test_input($_POST["email"]);
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  		$emailErr = "Invalid email format"; 
-		echo $emailErr;
+  		$emailErr = "Invalid email format";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('$emailErr')
+			window.location.href='RegPage.php'
+        	</SCRIPT>"); 
 		die();
 		}
 		
@@ -61,7 +76,10 @@
     while($row = $result->fetch_assoc()) {
 		if($email==$row["email"])
 		{
-			echo "Email has already been registered\n";
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Email has already been registered. Please log in')
+			window.location.href='LoginPage.php'
+        	</SCRIPT>");
 			die();
 		}
 	}
@@ -70,8 +88,11 @@
 		$sql = "INSERT INTO Users (firstname, lastname, zipcode, email, password)
 		values ('$firstname', '$lastname', '$zipcode', '$email', '$password')";
 		if($conn->query($sql)){
-			echo "Successfully signed up";
-			header("Location:mainA.html");
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Successfully signed up. Please log in')
+			window.location.href='LoginPage.php'
+        	</SCRIPT>");
+			die();
 		}
 		else{
 			echo "Error: ". $sql ."<br>". $conn->error;
@@ -81,7 +102,18 @@
 		}
 	}
 	else{
-		echo "Fill in all the areas";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Password and password confirmation do not match')
+			window.location.href='RegPage.php'
+        	</SCRIPT>");
+		die();
+	}
+	}
+else{
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Fill in all the areas')
+			window.location.href='RegPage.php'
+        	</SCRIPT>");
 		die();
 	}
 
