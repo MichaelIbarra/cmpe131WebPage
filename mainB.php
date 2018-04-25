@@ -6,6 +6,17 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<?php
+session_start();
+
+if(isset($_SESSION['uid']))
+{
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('You have logged in)
+            window.location.href='mainA.php'
+        	</SCRIPT>");
+}
+?>
 <html>
 <head>
 <title>Home</title>
@@ -28,8 +39,8 @@ Licence URI: http://www.os-templates.com/template-terms
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="LoginPage.html">Login</a></li>
-        <li><a href="RegPage.html">Register</a></li>
+        <li><a href="LoginPage.php">Login</a></li>
+        <li><a href="RegPage.php">Register</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -49,10 +60,10 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainB.html">Home</a></li>
-          <li class="active"><a href="search.html">Buy Books</a></li>
-          <li class="active"><a href="regBook.html">Sell Books</a></li>
-          <li class="active"><a href="search.html">Exchange</a></li>
+          <li class="active"><a href="mainB.php">Home</a></li>
+          <li class="active"><a href="search.php">Buy Books</a></li>
+          <li class="active"><a href="regBook.php">Sell Books</a></li>
+          <li class="active"><a href="search.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -79,7 +90,7 @@ Licence URI: http://www.os-templates.com/template-terms
               <font size = "2" color = "White" font face = "Arial Black">
               Be a member of our community
               </font></p>
-            <footer><a class="btn" href="#">Get Started</a></footer>
+            <footer><a class="btn" href="">Get Started</a></footer>
           </article>
         </li>
         <li>
@@ -96,7 +107,7 @@ Licence URI: http://www.os-templates.com/template-terms
               <font size = "2" color = "White" font face = "Arial Black">
               Low prices SJSU textbooks can be found here
               </font></p>
-            <footer><a class="btn" href="searchA.html">Get Started</a></footer>
+            <footer><a class="btn" href="search.php">Get Started</a></footer>
           </article>
         </li>
         <li>
@@ -113,7 +124,7 @@ Licence URI: http://www.os-templates.com/template-terms
               <font size = "2" color = "White" font face = "Arial Black">
               No shipping, no hassle, and it's easy
               </font></p>
-            <footer><a class="btn" href="searchA.html">Get Started</a></footer>
+            <footer><a class="btn" href="search.php">Get Started</a></footer>
           </article>
         </li>
       </ul>
@@ -245,7 +256,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>

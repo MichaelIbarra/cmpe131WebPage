@@ -6,9 +6,24 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<?php
+session_start();
+
+if(isset($_SESSION['uid']))
+{
+	//do nothing
+}
+else
+{
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Please login')
+            window.location.href='mainB.html'
+        	</SCRIPT>");
+}
+?>
 <html>
 <head>
-<title>Register a Book</title>
+<title>Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -22,14 +37,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><i class="fa fa-envelope-o"></i> Welcome back, Spartans!!</li>
+        <li><i class="fa fa-envelope-o"></i> Welcome back, <?php echo $_SESSION["firstname"]; ?>!!</li>
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="LoginPage.html">Login</a></li>
-        <li><a href="RegPage.html">Register</a></li>
+        <li><a href="profile.php">My Profile</a></li>
+        <li><a href="deleteSession.php">Log out</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -45,14 +60,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1>TEXTBOOK EXCHANGE</h1>
+        <h1>BOOKPANG</h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainB.html">Home</a></li>
-          <li class="active"><a href="search.html">Buy Books</a></li>
-          <li class="active"><a href="regBook.html">Sell Books</a></li>
-          <li class="active"><a href="search.html">Exchange</a></li>
+          <li class="active"><a href="mainA.php">Home</a></li>
+          <li class="active"><a href="searchA.php">Buy Books</a></li>
+          <li class="active"><a href="regBookA.php">Sell Books</a></li>
+          <li class="active"><a href="searchA.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -63,42 +78,60 @@ Licence URI: http://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
-    <div class="content" align="center">
-    <h1>
-      <font size = "15" color = "White" font face = "Arial Black">
-      Register a Book
-      </font></h1>
-    <form>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Book Name:
-        </font></p>
-      <p style="color:black"><input type="text" name="bname"></p>
-        <p>
-          <font size = "4" color = "White" font face = "Arial Black">
-          ISBN Number:
-          </font></p>
-      <p style="color:black"><input type="text" name="isbn"></p>
-        <br>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Description:
-      </font>
-        </textarea>
-      <br>
-      <font size = "2" color = "White" font face = "Arial Black">
-      e.g.: good condition, used, new, fair condition, etc
-      </font><br><br>
-        <p style="color:black"><textarea name="description" rows="5" cols="30">
-        </textarea></p>
-        <br>
-        <font size = "4" color = "White" font face = "Arial Black">
-      Zipcode :
-        </font></p>
-      <p style="color:black"><input type="text" name="zipcd"></p>
-        <br>
-      <p style="color:black"><input type="submit" value="Submit"></p>
-      <!-- end .content -->
-    </form>
+    <div class="flexslider basicslider">
+      <ul class="slides">
+        <li>
+          <article>
+            <p>
+              <font size = "5" color = "White" font face = "Arial Black">
+              Step 1
+              </font></p>
+            <h3 class="heading">
+              <font size = "15" color = "White" font face = "Arial Black">
+              Make an Account
+              </font></h3>
+            <p>
+              <font size = "2" color = "White" font face = "Arial Black">
+              Be a member of our community
+              </font></p>
+            <footer><a class="btn" href="#">Get Started</a></footer>
+          </article>
+        </li>
+        <li>
+          <article>
+            <p>
+              <font size = "5" color = "White" font face = "Arial Black">
+              Step 2
+              </font></p>
+            <h3 class="heading">
+              <font size = "15" color = "White" font face = "Arial Black">
+              Buy, Sell, and Exchange Textbooks
+              </font></h3>
+            <p>
+              <font size = "2" color = "White" font face = "Arial Black">
+              Low prices SJSU textbooks can be found here
+              </font></p>
+            <footer><a class="btn" href="searchA.php">Get Started</a></footer>
+          </article>
+        </li>
+        <li>
+          <article>
+            <p>
+              <font size = "5" color = "White" font face = "Arial Black">
+              Step 3
+              </font></p>
+            <h3 class="heading">
+              <font size = "15" color = "White" font face = "Arial Black">
+              Meet in Person and Do the Transaction
+            </font></h3>
+            <p>
+              <font size = "2" color = "White" font face = "Arial Black">
+              No shipping, no hassle, and it's easy
+              </font></p>
+            <footer><a class="btn" href="searchA.php">Get Started</a></footer>
+          </article>
+        </li>
+      </ul>
     </div>
     <!-- ################################################################################################ -->
   </div>
@@ -227,7 +260,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="aboutA.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>

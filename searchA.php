@@ -6,13 +6,27 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<?php
+session_start();
+
+if(isset($_SESSION['uid']))
+{
+	//do nothing
+}
+else
+{
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Please login')
+            window.location.href='search.php'
+        	</SCRIPT>");
+}
+?>
 <html>
 <head>
-<title>About Us</title>
+<title>Search a book</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel = "stylesheet" href = "Book4U.css" type="text/css">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -23,13 +37,15 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><i class="fa fa-envelope-o"></i> Welcome back, Spartans!!</li>
+        <li><i class="fa fa-envelope-o"></i> Welcome back, <?php echo $_SESSION["firstname"]; ?>!!</li>
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="mainB.html">Log out</a></li>
+        
+        <li><a href="profile.php">My Profile</a></li>
+        <li><a href="deleteSession.php">Log out</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -49,10 +65,10 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainA.html">Home</a></li>
-          <li class="active"><a href="searchA.html">Buy Books</a></li>
-          <li class="active"><a href="regBookA.html">Sell Books</a></li>
-          <li class="active"><a href="searchA.html">Exchange</a></li>
+          <li class="active"><a href="mainA.php">Home</a></li>
+          <li class="active"><a href="searchA.php">Buy Books</a></li>
+          <li class="active"><a href="regBookA.php">Sell Books</a></li>
+          <li class="active"><a href="searchA.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -63,8 +79,16 @@ Licence URI: http://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
-  <p class='masthead-intro'>Hey we're</p>
-  <h1 class='masthead-heading'>BookPANG!</h1>
+    <div class="content" align="center">
+    <h1>
+      <font size = "15" color = "White" font face = "Arial Black">
+      Search Books:
+      </font></h1>
+    <form action="booksearch.php" method="POST">
+      <p style="color:black"><textarea placeholder="Book name or ISBN number" name="search" rows="1" cols="50"></textarea>
+      <input type="submit" value="Search"/></p>
+    </form>
+    </div>
     <!-- ################################################################################################ -->
   </div>
   <!-- ################################################################################################ -->
@@ -76,36 +100,63 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row3">
   <section class="hoc container clear">
     <!-- ################################################################################################ -->
-    <div align="left">
-      	<h1>Introduction</h1>
-    	<p>We are a group 0f SJSU Students wokring together to create an amazing company!.</p>
-    	<p>I love the internet, technology, and building beautiful things.</p>
-  </section>
-		<section class="questions-section">
-    <h1>Who We Are</h1>
-    <h2>Cheng Chin Lim</h2>
-    <p>My name is Cheng Chin Lim,  I am an international transfer from Malaysia.
-			I am majoring in software engineering in San Jose State University</p>
-			<img class="centered-and-cropped" width="100" height="100"
-				style="border-radius:50%; float:margin-right" src="ChengCMPE131.jpg">
-    <h2>Daniel Lee</h2>
-    <p>My name is Daniel Lee. I am 2nd year and majoring in Software Engineering at San Jose State University.</p>
-		<img class="centered-and-cropped" width="100" height="100"
-			style="border-radius:50%; float:margin-right" src="DanielCMPE131.jpg">
-    <h2>Michael Ibarra</h2>
-    <p>Im a second year Software Engineer Major. I like to watch a lot of shows and marathon Disney movies.</p>
-		<img class="centered-and-cropped" width="100" height="100"
-			style="border-radius:50%; float:margin-right" src="CutePic.JPG">
-    <h2>Michelle Natasha</h2>
-    <p>My name is Michelle Natasha, I am an International student from Indonesia.
-Currently studying at San Jose State University and majoring in computer engineering</p>
-		<img class="centered-and-cropped" width="100" height="100"
-		style="border-radius:50%; float:margin-right" src="MichelleCMPE131.jpg">
-		<h2>Minkyoo Lee</h2>
-		<p>Look at me im cool. </p>
-		</section>
-	</div>
+    <div class="btmspace-50 center">
+      <h2>See our textbooks collection</h2>
+      <p>Just in case you don't have your ISBN number</p>
+    </div>
+    <ul class="nospace group">
+      <li class="one_third first">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li><i class="fa fa-calendar-o"></i>Title: Introduction to Business</li>
+              <li><i class="fa fa-comments"></i>Price: $40</li>
+            </ul>
+            <h6 class="heading font-x1">Fair condition</h6>
+            <p><a href="#">Read More &raquo;</a></p>
+          </div>
+        </article>
+      </li>
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://mitpress.mit.edu/sites/default/files/9780262033848.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li><i class="fa fa-calendar-o"></i>Title: Introduction to Algorithms</li>
+              <li><i class="fa fa-comments"></i>Price: $50</li>
+            </ul>
+            <h6 class="heading font-x1">The book is in a good condition</h6>
+            <p><a href="#">Read More &raquo;</a></p>
+          </div>
+        </article>
+      </li>
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://www.schandpublishing.com/uploads/bookimages/schand-books/10000261.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li><i class="fa fa-calendar-o"></i>Title: Principles of EE</li>
+              <li><i class="fa fa-comments"></i>Price: $20</li>
+            </ul>
+            <h6 class="heading font-x1">Decent, lots of highlights</h6>
+            <p><a href="#">Read More &raquo;</a></p>
+          </div>
+        </article>
+      </li>
+    </ul>
     <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('http://www.destination360.com/north-america/us/california/san-jose/holiday-inn-express-san-jose-map.gif');">
+  <article class="hoc container center">
+    <!-- ################################################################################################ -->
+    <i class="block btmspace-50 fa fa-4x fa-street-view"></i>
+    <h6>Meet in Person</h6>
+    <p class="btmspace-50">Our site is equipped with Google Maps for more accurate location</p>
+    <footer><a class="btn inverse" href="#">Find the closest books</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -115,22 +166,26 @@ Currently studying at San Jose State University and majoring in computer enginee
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="center btmspace-80">
-      <h3 class="heading">Come check out some of our stuff!</h3>
+      <h3 class="heading">Buying, Selling, and Exchanging books made easy</h3>
+      <p class="nospace">Meet in person and get transaction done</p>
     </div>
     <ul class="nospace group services">
       <li class="one_third first">
-        <article><a href="https://github.com/MichaelIbarra/cmpe131WebPage"><i class="fa fa-object-group"></i></a>
-          <h6 class="heading">GitHub</h6>
+        <article><a href="#"><i class="fa fa-object-group"></i></a>
+          <h6 class="heading">Safe</h6>
+          <p>Everyone who wants to use this service must be registered</p>
         </article>
       </li>
       <li class="one_third">
         <article><a href="#"><i class="fa fa-fighter-jet"></i></a>
-          <h6 class="heading">Twitter</h6>
+          <h6 class="heading">No hassle and no shipping</h6>
+          <p>Contact the seller and/or buyer in person for more information, then meet in person</p>
         </article>
       </li>
       <li class="one_third">
         <article><a href="#"><i class="fa fa-pagelines"></i></a>
-          <h6 class="heading">Google+</h6>
+          <h6 class="heading">Low prices</h6>
+          <p>Sometimes textbooks can get very pricy, so we provide a way to buy, sell and exchange them</p>
         </article>
       </li>
     </ul>
@@ -161,7 +216,7 @@ Currently studying at San Jose State University and majoring in computer enginee
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="aboutA.html">About</a></li>
+      <li><a href="aboutA.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>

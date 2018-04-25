@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<!--
-Template Name: Boguco
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
+<?php
+session_start();
+
+if(isset($_SESSION['uid']))
+{
+	//do nothing
+}
+else
+{
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Please login')
+            window.location.href='LoginPage.php'
+        	</SCRIPT>");
+}
+?>
 <html>
 <head>
-<title>Register</title>
+<title>Profile</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -22,14 +29,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><i class="fa fa-envelope-o"></i> Welcome back, Spartans!!</li>
+        <li><i class="fa fa-envelope-o"></i> Welcome back, <?php echo $_SESSION["firstname"]; ?>!!</li>
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
-      	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="LoginPage.html">Login</a></li>
-        <li><a href="RegPage.html">Register</a></li>
+      	<li><a href="mainA.html"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="profile.php">My profile</a></li>
+        <li><a href="deleteSession.php">Log out</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -45,7 +52,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1>TEXTBOOK EXCHANGE</h1>
+        <h1>BOOKPANG</h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
@@ -65,54 +72,19 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="content" align="center">
     <h1>
-      <font size = "15" color = "White" font face = "Arial Black">
-      Register
+      <font size = "10" color = "White" font face = "Arial Black">
+      Your Profile Info
       </font></h1>
-    <form method="POST" action="connect.php">
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        First Name:
-        </font></p>
-        <p style="color:black"><input type="text" name="firstname"></p>
-        <br>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Last Name:
-        </font></p>
-  		<p style="color:black"><input type="text" name="lastname"></p>
-        <br>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Zip Code:
-        </font></p>
-      	<p style="color:black"><input type="text" name="zipcode"></p>
-      	<br>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        E-mail:
-        </font></p>
-        <p style="color:black"><input type="text" name="email"></p>
-        <br>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Password:
-        </font></p>
-  		<p style="color:black"><input type="password" name="password"></p>
-        <br>
-      <p>
-        <font size = "4" color = "White" font face = "Arial Black">
-        Confirm Password:
-        </font></p>
-        <p style="color:black"><input type="password" name="cpassword"></p>
-        <br>
-       <p style="color:black"><input type="submit" value="Submit"></p>
-    </form>
+        <font size = "4" color = "white" font face = "Arial Black">
+        First Name : <?php echo $_SESSION["firstname"]; ?> <br>
+        Last Name : <?php echo $_SESSION["lastname"]; ?> <br>
+        Zip Code : <?php echo $_SESSION["zipcode"]; ?> <br>
+        Email : <?php echo $_SESSION["email"]; ?> <br>
+        Password : <?php echo $_SESSION["password"]; ?> <br>
+        Wish List : <?php echo $_SESSION["wishlist"]; ?> <br>
+        </font>
     </div>
-    <h2>
-      <font size = "4" color = "White" font face = "Arial Black">
-      Already have an account?
-      </font></h2>
-    <footer><a class="btn" href="LoginPage.html">LOGIN</a></footer>
+      </font>
     <!-- ################################################################################################ -->
   </div>
   <!-- ################################################################################################ -->

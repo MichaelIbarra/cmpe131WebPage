@@ -1,10 +1,12 @@
 <?php
+session_start();
+
  $email = filter_input(INPUT_POST, 'email');
  echo "email: $email\n";
  $password = filter_input(INPUT_POST, 'password');
  echo "password: $password\n";
  	if(!empty($email) && !empty($password))
-	{
+	{//1
 		$host = "localhost";
 		$username = "root";
         $pw = "";
@@ -17,29 +19,48 @@
 				.mysqli_connect_error());
 			}
 			else
-	{
-		$sql = "SELECT email, password FROM Users";
+		{//else2
+		$sql = "SELECT * FROM Users";
 		$result = $conn->query($sql);
-		if ($result->num_rows > 0) {
-    // compare username and password in database
+		if ($result->num_rows > 0) {//3
+		
     while($row = $result->fetch_assoc()) {
 		if($email==$row["email"] && $password==$row["password"])
 		{
-			echo "Successfully login\n";
-			header("Location:mainA.html");
+			$_SESSION['firstname']=$row["firstname"];
+			$_SESSION['email']=$row["email"];
+			$_SESSION['uid']=$row["UID"];
+			
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Successfully login')
+        	</SCRIPT>");
+			
+			header("Location:mainA.php");
+			die();
 		}
         else if($email==$row["email"] && $password!=$row["password"])
 		{
-			echo "Password entered is wrong\n";
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Password entered is wrong')
+        	</SCRIPT>");
+			die();
 		}
-	}
-		}
-    		echo "Email is not yet registered";
+			
+	}//endwhile
+		
+    		
+			}//end3
 $conn->close();
-		}
-	}
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Email is not yet registered')
+        	</SCRIPT>");
+			die();
+		}//end else2
+	}//end1
 	else{
-		echo "Fill in all the areas";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+        window.alert('Fill in all the areas')
+        </SCRIPT>");
 		die();
 	}
 ?>

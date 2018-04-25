@@ -6,9 +6,24 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<?php
+session_start();
+
+if(isset($_SESSION['uid']))
+{
+	//do nothing
+}
+else
+{
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Please login')
+            window.location.href='LoginPage.php'
+        	</SCRIPT>");
+}
+?>
 <html>
 <head>
-<title>Search a book</title>
+<title>Register a Book</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -22,14 +37,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><i class="fa fa-envelope-o"></i> Welcome back, Spartans!!</li>
+        <li><i class="fa fa-envelope-o"></i> Welcome back, <?php echo $_SESSION["firstname"]; ?>!!</li>
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="LoginPage.html">Login</a></li>
-        <li><a href="RegPage.html">Register</a></li>
+        <li><a href="profile.php">My profile</a></li>
+        <li><a href="deleteSession.php">Log out</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -49,10 +64,10 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainB.html">Home</a></li>
-          <li class="active"><a href="search.html">Buy Books</a></li>
-          <li class="active"><a href="regBook.html">Sell Books</a></li>
-          <li class="active"><a href="search.html">Exchange</a></li>
+          <li class="active"><a href="mainA.php">Home</a></li>
+          <li class="active"><a href="searchA.php">Buy Books</a></li>
+          <li class="active"><a href="regBookA.php">Sell Books</a></li>
+          <li class="active"><a href="searchA.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -66,18 +81,74 @@ Licence URI: http://www.os-templates.com/template-terms
     <div class="content" align="center">
     <h1>
       <font size = "15" color = "White" font face = "Arial Black">
-      Search ISBN Number:
+      Register a Book
       </font></h1>
-    <form action="booksearch.php" method="POST">
-      <input type="text" placeholder="Search.." name="search"/>
-      <input type="submit" value=">>"/>
-    </form>
+      <form method="POST" action="connectBook.php">
+      	Book Name : <p style="color:black"><input type="text" name= "bookName"><br></p>
+      	ISBN number : <p style="color:black"><input type="text" name= "ISBNNumber"><br></p>
+        Description:
+      <br>e.g.: good condition, used, new, fair condition, etc (50 characters max) <br>
+        <p style="color:black"><textarea name="description" rows="5" cols="30">
+        </textarea></p>
+        <br>
+      	Zipcode : <p style="color:black"><input type=text name= "zipcode"><br></p>
+        <p style="color:black"><input type="submit" value="Submit"></p>
+        </form>
     </div>
     <!-- ################################################################################################ -->
   </div>
   <!-- ################################################################################################ -->
 </div>
 <!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80">
+      <h3 class="heading">Buying, Selling, and Exchanging books made easy</h3>
+      <p class="nospace">Meet in person and get transaction done</p>
+    </div>
+    <ul class="nospace group services">
+      <li class="one_third first">
+        <article><a href="#"><i class="fa fa-object-group"></i></a>
+          <h6 class="heading">Safe</h6>
+          <p>Everyone who wants to use this service must be registered</p>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><a href="#"><i class="fa fa-fighter-jet"></i></a>
+          <h6 class="heading">No hassle and no shipping</h6>
+          <p>Contact the seller and/or buyer in person for more information, then meet in person</p>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><a href="#"><i class="fa fa-pagelines"></i></a>
+          <h6 class="heading">Low prices</h6>
+          <p>Sometimes textbooks can get very pricy, so we provide a way to buy, sell and exchange them</p>
+        </article>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('http://www.destination360.com/north-america/us/california/san-jose/holiday-inn-express-san-jose-map.gif');">
+  <article class="hoc container center">
+    <!-- ################################################################################################ -->
+    <i class="block btmspace-50 fa fa-4x fa-street-view"></i>
+    <h6>Meet in Person</h6>
+    <p class="btmspace-50">Our site is equipped with Google Maps for more accurate location</p>
+    <footer><a class="btn inverse" href="#">Find the closest books</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -132,55 +203,6 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('http://www.destination360.com/north-america/us/california/san-jose/holiday-inn-express-san-jose-map.gif');">
-  <article class="hoc container center">
-    <!-- ################################################################################################ -->
-    <i class="block btmspace-50 fa fa-4x fa-street-view"></i>
-    <h6>Meet in Person</h6>
-    <p class="btmspace-50">Our site is equipped with Google Maps for more accurate location</p>
-    <footer><a class="btn inverse" href="#">Find the closest books</a></footer>
-    <!-- ################################################################################################ -->
-  </article>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <main class="hoc container clear">
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div class="center btmspace-80">
-      <h3 class="heading">Buying, Selling, and Exchanging books made easy</h3>
-      <p class="nospace">Meet in person and get transaction done</p>
-    </div>
-    <ul class="nospace group services">
-      <li class="one_third first">
-        <article><a href="#"><i class="fa fa-object-group"></i></a>
-          <h6 class="heading">Safe</h6>
-          <p>Everyone who wants to use this service must be registered</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article><a href="#"><i class="fa fa-fighter-jet"></i></a>
-          <h6 class="heading">No hassle and no shipping</h6>
-          <p>Contact the seller and/or buyer in person for more information, then meet in person</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article><a href="#"><i class="fa fa-pagelines"></i></a>
-          <h6 class="heading">Low prices</h6>
-          <p>Sometimes textbooks can get very pricy, so we provide a way to buy, sell and exchange them</p>
-        </article>
-      </li>
-    </ul>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <!-- Footer Background Image Wrapper -->
 <div class="bgded overlay" style="background-image:url('https://i.travelapi.com/hotels/1000000/80000/76800/76745/b137ce21_z.jpg');">
   <!-- ################################################################################################ -->
@@ -200,7 +222,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="aboutA.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
