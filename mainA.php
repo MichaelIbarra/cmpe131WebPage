@@ -17,7 +17,7 @@ else
 {
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
         	window.alert('Please login')
-            window.location.href='mainB.html'
+            window.location.href='mainB.php'
         	</SCRIPT>");
 }
 ?>
