@@ -43,7 +43,7 @@ else
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        
+
         <li><a href="profile.php">My Profile</a></li>
         <li><a href="deleteSession.php">Log out</a></li>
       </ul>
@@ -61,7 +61,7 @@ else
     <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1>TEXTBOOK EXCHANGE</h1>
+        <h1>BOOKPANG</h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">

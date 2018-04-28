@@ -60,7 +60,7 @@ else
     <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1>TEXTBOOK EXCHANGE</h1>
+        <h1>BOOKPANG</h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
