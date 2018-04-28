@@ -34,7 +34,7 @@ else
     </div>
     <div class="fl_right">
       <ul class="nospace">
-      	<li><a href="mainA.html"><i class="fa fa-lg fa-home"></i></a></li>
+      	<li><a href="mainA.php"><i class="fa fa-lg fa-home"></i></a></li>
         <li><a href="profile.php">My profile</a></li>
         <li><a href="deleteSession.php">Log out</a></li>
       </ul>
@@ -56,10 +56,10 @@ else
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainB.html">Home</a></li>
-          <li class="active"><a href="search.html">Buy Books</a></li>
-          <li class="active"><a href="regBook.html">Sell Books</a></li>
-          <li class="active"><a href="search.html">Exchange</a></li>
+          <li class="active"><a href="mainA.php">Home</a></li>
+          <li class="active"><a href="searchA.php">Buy Books</a></li>
+          <li class="active"><a href="regBookA.php">Sell Books</a></li>
+          <li class="active"><a href="searchA.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -75,15 +75,25 @@ else
       <font size = "10" color = "White" font face = "Arial Black">
       Your Profile Info
       </font></h1>
-        <font size = "4" color = "white" font face = "Arial Black">
-        First Name : <?php echo $_SESSION["firstname"]; ?> <br>
-        Change first name? 
-        <form action="updateInfo.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
-        Last Name : <?php echo $_SESSION["lastname"]; ?> <br>
-        Zip Code : <?php echo $_SESSION["zipcode"]; ?> <br>
-        Email : <?php echo $_SESSION["email"]; ?> <br>
-        Password : <?php echo $_SESSION["password"]; ?> <br>
-        Wish List : <?php echo $_SESSION["wishlist"]; ?> <br>
+			<font size = "4" color = "white" font face = "Arial Black">
+			First Name : <?php echo $_SESSION["firstname"]; ?> <br>
+			Change first name?
+			<form action="updateFirstname.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
+			Last Name : <?php echo $_SESSION["lastname"]; ?> <br>
+			Change last name?
+			<form action="updateLastname.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
+			Zip Code : <?php echo $_SESSION["zipcode"]; ?> <br>
+			Change zipcode?
+			<form action="updateZipcode.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
+			Email : <?php echo $_SESSION["email"]; ?> <br>
+			Change Email?
+			<form action="updateEmail.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
+			Password : <?php echo $_SESSION["password"]; ?> <br>
+			Change password?
+			<form action="updatePassword.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
+			Wish List : <?php echo $_SESSION["wishlist"]; ?> <br>
+			Change wish list?
+			<form action="updateWishList.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
         </font>
         </form>
     </div>
@@ -215,7 +225,7 @@ else
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
