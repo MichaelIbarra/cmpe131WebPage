@@ -77,12 +77,15 @@ else
       </font></h1>
         <font size = "4" color = "white" font face = "Arial Black">
         First Name : <?php echo $_SESSION["firstname"]; ?> <br>
+        Change first name? 
+        <form action="updateInfo.php" method="post"><p style="color:black"> <input type="text" name="changefn" /> <input type="submit" value="Update"/></p></form>
         Last Name : <?php echo $_SESSION["lastname"]; ?> <br>
         Zip Code : <?php echo $_SESSION["zipcode"]; ?> <br>
         Email : <?php echo $_SESSION["email"]; ?> <br>
         Password : <?php echo $_SESSION["password"]; ?> <br>
         Wish List : <?php echo $_SESSION["wishlist"]; ?> <br>
         </font>
+        </form>
     </div>
       </font>
     <!-- ################################################################################################ -->
