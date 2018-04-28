@@ -12,11 +12,7 @@ session_start();
         	</SCRIPT>");
 		die();
 		}
-<<<<<<< HEAD:updateFirstname.php
 
-=======
-		
->>>>>>> 1d0b4e781530f73159065c04be09f18b4f5226fa:updateInfo.php
 		if(!empty($newfirstname))
 		{
 		$conn = mysqli_connect("localhost", "root", "", "Registration");
@@ -39,14 +35,10 @@ $conn->close();
 	}
 	else
 	{
-<<<<<<< HEAD:updateFirstname.php
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
 					window.alert('First name cannot be empty!')
 			window.location.href='ShowProfile.php'
 					</SCRIPT>");
-=======
-		echo "Name cannot be empty";
->>>>>>> 1d0b4e781530f73159065c04be09f18b4f5226fa:updateInfo.php
 	}
 }
 
