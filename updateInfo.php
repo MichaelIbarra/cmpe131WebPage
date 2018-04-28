@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-	//$newfirstname = filter_input(INPUT_POST, 'changefn');
- 	//echo "first name: $newfirstname\n";
-	
 	if(isset($_SESSION['uid']))
 	{
 		$newfirstname = test_input($_POST["changefn"]);
@@ -16,8 +13,10 @@ session_start();
 		die();
 		}
 		
-	$conn = mysqli_connect("localhost", "root", "", "Registration");
-	if($conn -> connect_error)
+		if(!empty($newfirstname))
+		{
+		$conn = mysqli_connect("localhost", "root", "", "Registration");
+		if($conn -> connect_error)
     	die("Connection failed:" . $conn -> connect_error);
  $lookUID = $_SESSION['uid'];
  $sql = "UPDATE Users SET firstname='$newfirstname' WHERE UID='$lookUID'";
@@ -30,6 +29,11 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
+	}
+	else
+	{
+		echo "Name cannot be empty";
+	}
 }
 
 function test_input($data) {
