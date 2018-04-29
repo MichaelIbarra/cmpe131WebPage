@@ -13,13 +13,13 @@ if(isset($_SESSION['uid']))
 {
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
         	window.alert('You have logged in)
-            window.location.href='searchA.php'
+            window.location.href='displayA.php'
         	</SCRIPT>");
 }
 ?>
 <html>
 <head>
-<title>Search a book</title>
+<title>Display books</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -70,10 +70,6 @@ if(isset($_SESSION['uid']))
     </header>
   </div>
   <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <div id="pageintro" class="hoc clear">
-    <!-- ################################################################################################ -->
     <div class="content" align="center">
     <h1>
       <font size = "15" color = "White" font face = "Arial Black">
@@ -84,22 +80,88 @@ if(isset($_SESSION['uid']))
       <input type="submit" value="Search"/></p>
     </form>
     </div>
-    <!-- ################################################################################################ -->
-  </div>
-  <!-- ################################################################################################ -->
-</div>
 <!-- End Top Background Image Wrapper -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row3">
   <section class="hoc container clear">
-    <!-- ################################################################################################ -->
-    <div class="btmspace-50 center">
-      <h2>See our textbooks collection</h2>
-      <p>Just in case you don't have your ISBN number</p>
+	<div class="btmspace-50 center">
+      <h2>Results:</h2>
     </div>
-    <ul class="nospace group">
+
+    <?php
+//collect
+
+if(isset($_POST['search'])) {
+  $searchq = $_POST['search'];
+  if(!empty($searchq)){
+    $host = "localhost";
+		$username = "root";
+        $pw = "";
+		$dbname = "Registration";
+    //create connection
+			$conn = new mysqli ($host, $username, $pw, $dbname);
+				if(mysqli_connect_error()){
+					die('connect Error ('.mysqli_connect_errno().')'
+						.mysqli_connect_error());
+        } else{
+          //echo "searchq: $searchq\n";
+
+          $query = $conn->query("SELECT * FROM books WHERE ISBNNumber LIKE '%$searchq%' OR bookName LIKE '%$searchq%'") or die("could not search :/");
+          $count = $query->num_rows;
+          //echo "$count\n";
+          if ($count == 0){
+            echo "There was no search results!\n";
+          } else{
+
+            /*while($row = mysql_fetch_array($query)) {
+              $isbn = $row['isbn'];
+              $bookname = $row['bookname'];
+
+              $output .= '<div> '.$isbn.' '.$bookname.' </div>';
+            }*/
+            for($i=0; $i<$count; $i++){
+              $query->data_seek($i);
+              $row = $query->fetch_array(MYSQLI_ASSOC);
+			  $title=$row['bookName'];
+			  $isbn=$row['ISBNNumber'];
+			  $desc=$row['description'];
+$html = <<<HTML
+<ul class="nospace group">
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li>Title: $title</li>
+			  <li>ISBN Number: $isbn</li>
+			  <li>Description: $desc</li>
+              <li>Price: $40</li>
+            </ul>
+            <h6 class="heading font-x1">Fair condition</h6>
+            <p><a href="#">Read More &raquo;</a></p>
+          </div>
+        </article>
+      </li>
+</ul>
+HTML;
+              echo $html;
+
+            }
+          }
+        }
+  }
+}
+
+?>
+
+<!--<div class="wrapper row3">
+  <section class="hoc container clear">
+    <!-- ################################################################################################ -->
+    <!--<div class="btmspace-50 center">
+      <h2>Results:</h2>
+    </div>-->
+    <!--<ul class="nospace group">
       <li class="one_third first">
         <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
           <div class="excerpttxt">

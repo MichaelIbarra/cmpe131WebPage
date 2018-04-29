@@ -11,9 +11,13 @@ session_start();
 
 if(isset($_SESSION['uid']))
 {
+	//do nothing
+}
+else
+{
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
-        	window.alert('You have logged in)
-            window.location.href='searchA.php'
+        	window.alert('Please login')
+            window.location.href='display.php'
         	</SCRIPT>");
 }
 ?>
@@ -33,14 +37,15 @@ if(isset($_SESSION['uid']))
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace">
-        <li><i class="fa fa-envelope-o"></i> Welcome back, Spartans!!</li>
+        <li><i class="fa fa-envelope-o"></i> Welcome back, <?php echo $_SESSION["firstname"]; ?>!!</li>
       </ul>
     </div>
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="LoginPage.php">Login</a></li>
-        <li><a href="RegPage.php">Register</a></li>
+        
+        <li><a href="profile.php">My Profile</a></li>
+        <li><a href="deleteSession.php">Log out</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -60,34 +65,29 @@ if(isset($_SESSION['uid']))
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="mainB.php">Home</a></li>
-          <li class="active"><a href="search.php">Buy Books</a></li>
-          <li class="active"><a href="regBook.php">Sell Books</a></li>
-          <li class="active"><a href="search.php">Exchange</a></li>
+          <li class="active"><a href="mainA.php">Home</a></li>
+          <li class="active"><a href="searchA.php">Buy Books</a></li>
+          <li class="active"><a href="regBookA.php">Sell Books</a></li>
+          <li class="active"><a href="searchA.php">Exchange</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
     </header>
   </div>
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
     <div class="content" align="center">
     <h1>
       <font size = "15" color = "White" font face = "Arial Black">
       Search Books:
       </font></h1>
-    <form action="display.php" method="POST">
+    <form action="displayA.php" method="POST">
       <p style="color:black"><textarea placeholder="Book name or ISBN number" name="search" rows="1" cols="50"></textarea>
       <input type="submit" value="Search"/></p>
     </form>
     </div>
-    <!-- ################################################################################################ -->
-  </div>
-  <!-- ################################################################################################ -->
-</div>
+    
+
+
 <!-- End Top Background Image Wrapper -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -96,10 +96,73 @@ if(isset($_SESSION['uid']))
   <section class="hoc container clear">
     <!-- ################################################################################################ -->
     <div class="btmspace-50 center">
-      <h2>See our textbooks collection</h2>
-      <p>Just in case you don't have your ISBN number</p>
+      <h2>Results:</h2>
     </div>
-    <ul class="nospace group">
+    <?php
+//collect
+
+if(isset($_POST['search'])) {
+  $searchq = $_POST['search'];
+  if(!empty($searchq)){
+    $host = "localhost";
+		$username = "root";
+        $pw = "";
+		$dbname = "Registration";
+    //create connection
+			$conn = new mysqli ($host, $username, $pw, $dbname);
+				if(mysqli_connect_error()){
+					die('connect Error ('.mysqli_connect_errno().')'
+						.mysqli_connect_error());
+        } else{
+          //echo "searchq: $searchq\n";
+
+          $query = $conn->query("SELECT * FROM books WHERE ISBNNumber LIKE '%$searchq%' OR bookName LIKE '%$searchq%'") or die("could not search :/");
+          $count = $query->num_rows;
+          //echo "$count\n";
+          if ($count == 0){
+            echo "There was no search results!\n";
+          } else{
+
+            /*while($row = mysql_fetch_array($query)) {
+              $isbn = $row['isbn'];
+              $bookname = $row['bookname'];
+
+              $output .= '<div> '.$isbn.' '.$bookname.' </div>';
+            }*/
+            for($i=0; $i<$count; $i++){
+              $query->data_seek($i);
+              $row = $query->fetch_array(MYSQLI_ASSOC);
+			  $title=$row['bookName'];
+			  $isbn=$row['ISBNNumber'];
+			  $desc=$row['description'];
+$html = <<<HTML
+<ul class="nospace group">
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li>Title: $title</li>
+			  <li>ISBN Number: $isbn</li>
+			  <li>Description: $desc</li>
+              <li>Price: $40</li>
+            </ul>
+            <h6 class="heading font-x1">Fair condition</h6>
+            <p><a href="#">Read More &raquo;</a></p>
+          </div>
+        </article>
+      </li>
+</ul>
+HTML;
+              echo $html;
+
+            }
+          }
+        }
+  }
+}
+
+?>
+    <!--<ul class="nospace group">
       <li class="one_third first">
         <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
           <div class="excerpttxt">
@@ -211,7 +274,7 @@ if(isset($_SESSION['uid']))
   <nav class="quicklinks row4">
     <ul class="hoc clear">
       <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-      <li><a href="about.php">About</a></li>
+      <li><a href="aboutA.php">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>

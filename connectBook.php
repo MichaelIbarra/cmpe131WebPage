@@ -45,7 +45,12 @@
 		$sql = "INSERT INTO books (bookName, ISBNNumber, description, zipcode)
 				values ('$bookName', '$ISBNNumber', '$description', '$zipcode')";
 		if($conn->query($sql)){
-            header("Location: mainB.html");
+			echo ("<SCRIPT LANGUAGE='JavaScript'>
+        	window.alert('Successfully register a book')
+            window.location.href='regBookA.php'
+        	</SCRIPT>");
+			die();
+            //header("Location: mainB.html");
 		}
 		else{
 			echo "Error: ". $sql ."<br>". $conn->error;

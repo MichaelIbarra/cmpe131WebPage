@@ -84,7 +84,7 @@ else
       <font size = "15" color = "White" font face = "Arial Black">
       Search Books:
       </font></h1>
-    <form action="booksearch.php" method="POST">
+    <form action="displayA.php" method="POST">
       <p style="color:black"><textarea placeholder="Book name or ISBN number" name="search" rows="1" cols="50"></textarea>
       <input type="submit" value="Search"/></p>
     </form>
