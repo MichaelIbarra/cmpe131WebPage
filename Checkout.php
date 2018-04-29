@@ -11,7 +11,7 @@ session_start();
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
+      <form action="afterCheckout.php">
 
         <div class="row">
           <div class="col-50">
@@ -62,7 +62,7 @@ session_start();
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
-        <a href="afterCheckout.php"><input type="submit" value="Continue to checkout" class="btn"></a>
+        <input type="submit" value="Continue to checkout" class="btn">
       </form>
     </div>
   </div>
@@ -72,7 +72,7 @@ session_start();
       <h4>Cart 
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i> 
-          <b>0</b>
+          <b>1</b>
         </span>
       </h4>
       <hr>
