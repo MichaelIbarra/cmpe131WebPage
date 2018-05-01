@@ -12,7 +12,7 @@ session_start();
  if(!empty($bookName) && !empty($ISBNNumber) && !empty($description) && !empty($price))
  {
 	 $bookName = test_input($_POST["bookName"]);
-		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$bookName)) {
+		if (!preg_match("/^[a-zA-Z0-9:-&() ]*$/",$bookName)) {
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
        window.alert('Wrong format of book name. Only letters, numbers and white space allowed')
          window.location.href='regBookA.php'
@@ -21,7 +21,7 @@ session_start();
 		}
 
 		$price = test_input($_POST["price"]);
- 		if (!preg_match("/^[0-9]*$/",$price)) {
+ 		if (!preg_match("/^[0-9.]*$/",$price)) {
  		echo ("<SCRIPT LANGUAGE='JavaScript'>
       window.alert('Wrong format of price. Only numbers allowed')
         window.location.href='regBookA.php'
@@ -30,17 +30,17 @@ session_start();
 		}
 
 		$ISBNNumber = test_input($_POST["ISBNNumber"]);
- 		if (!preg_match("/^[0-9]*$/",$ISBNNumber)) {
+ 		if (!preg_match("/^[0-9-]*$/",$ISBNNumber)) {
   		echo ("<SCRIPT LANGUAGE='JavaScript'>
        window.alert('Wrong format of ISBN number. Only numbers allowed')
          window.location.href='regBookA.php'
        </SCRIPT>");
-		die(); 
+		die();
 		}
-		
+
 		$SID=$_SESSION['uid'];
 		$zip=$_SESSION['zipcode'];
-		
+
 	$host = "localhost";
 	$username = "root";
     $pw = "";
@@ -54,7 +54,7 @@ session_start();
 	else{
 		$sql = "INSERT INTO books (bookName, ISBNNumber, description, price, SID, zipcode)
 				values ('$bookName', '$ISBNNumber', '$description', '$price', '$SID', '$zip')";
-		
+
 		if($conn->query($sql)){
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
         	window.alert('Successfully register a book')
