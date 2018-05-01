@@ -30,6 +30,7 @@ session_start();
 			$_SESSION['firstname']=$row["firstname"];
 			$_SESSION['email']=$row["email"];
 			$_SESSION['uid']=$row["UID"];
+			$_SESSION['zipcode']=$row["zipcode"];
 
 			echo ("<SCRIPT LANGUAGE='JavaScript'>
         	window.alert('Successfully login')
