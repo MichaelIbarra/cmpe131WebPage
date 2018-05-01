@@ -11,10 +11,7 @@ session_start();
 
 if(isset($_SESSION['uid']))
 {
-	echo ("<SCRIPT LANGUAGE='JavaScript'>
-        	window.alert('You have logged in)
-            window.location.href='displayA.php'
-        	</SCRIPT>");
+	header("Location:displayA.php");
 }
 ?>
 <html>
@@ -23,6 +20,7 @@ if(isset($_SESSION['uid']))
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel = "stylesheet" href = "Book4U.css" type="text/css">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -127,23 +125,27 @@ if(isset($_POST['search'])) {
 			  $title=$row['bookName'];
 			  $isbn=$row['ISBNNumber'];
 			  $desc=$row['description'];
+			  $price=$row['price'];
+				$saveBID=$row['BID'];
+				$zip=$row['zipcode'];
 $html = <<<HTML
 <ul class="nospace group">
-      <li class="one_third">
-        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
+      <li class="one_third first">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://ashmagautam.files.wordpress.com/2013/11/mcj038257400001.jpg" alt=""></a>
           <div class="excerpttxt">
             <ul>
-              <li>Title: $title</li>
-			  <li>ISBN Number: $isbn</li>
+              <li>Price: $$price</li>
 			  <li>Description: $desc</li>
-              <li>Price: $40</li>
+              <li>Zipcode:$zip</li>
             </ul>
-            <h6 class="heading font-x1">Fair condition</h6>
-            <p><a href="#">Read More &raquo;</a></p>
-          </div>
+            <h6 class="heading font-x1">Title: $title</h6>
+			<h6 class="heading font-x1">ISBN Number: $isbn</h6>
+			<p><a href="bookDetail.php?bid=$saveBID">More details &raquo;</a></p>
+			</div>
         </article>
       </li>
 </ul>
+</br></br>
 HTML;
               echo $html;
 
@@ -200,7 +202,7 @@ HTML;
       </li>
     </ul>
     <!-- ################################################################################################ -->
-  </section>
+ </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
