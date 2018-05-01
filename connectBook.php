@@ -13,6 +13,7 @@
  if(!empty($bookName) && !empty($price) && !empty($ISBNNumber) && !empty($description) && !empty($zipcode))
  {
 	 $bookName = test_input($_POST["bookName"]);
+
 		if (!preg_match("/^[a-zA-Z0-9 ]*$/",$bookName)) {
   		$nameErr = "Only letters and white space allowed";
     echo ("<SCRIPT LANGUAGE='JavaScript'>
