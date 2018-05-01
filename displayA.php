@@ -43,7 +43,7 @@ else
     <div class="fl_right">
       <ul class="nospace">
       	<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        
+
         <li><a href="profile.php">My Profile</a></li>
         <li><a href="deleteSession.php">Log out</a></li>
       </ul>
@@ -85,7 +85,7 @@ else
       <input type="submit" value="Search"/></p>
     </form>
     </div>
-    
+
 
 
 <!-- End Top Background Image Wrapper -->
@@ -135,16 +135,19 @@ if(isset($_POST['search'])) {
 			  $title=$row['bookName'];
 			  $isbn=$row['ISBNNumber'];
 			  $desc=$row['description'];
+				$price=$row['price'];
+				$zipc=$row['zipcode'];
 $html = <<<HTML
 <ul class="nospace group">
       <li class="one_third">
-        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://education.fcps.org/ohs/sites/ohs/files/teacherimages/Intro2Biz.jpg" alt=""></a>
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="http://lpcexpressnews.com/wp-content/uploads/2016/01/Textbooks-6.jpg" alt=""></a>
           <div class="excerpttxt">
             <ul>
               <li>Title: $title</li>
 			  <li>ISBN Number: $isbn</li>
 			  <li>Description: $desc</li>
-              <li>Price: $40</li>
+              <li>Price: $$price</li>
+							<li>Zipcode: $zipc</li>
             </ul>
             <h6 class="heading font-x1">Fair condition</h6>
             <p><a href="#">Read More &raquo;</a></p>

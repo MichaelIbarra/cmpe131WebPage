@@ -86,6 +86,9 @@ else
       <form method="POST" action="connectBook.php">
       	Book Name : <p style="color:black"><input type="text" name= "bookName"><br></p>
       	ISBN number : <p style="color:black"><input type="text" name= "ISBNNumber"><br></p>
+				Price :
+				<br>Only numbers (ex. 40 = 40.00)<br>
+				<p style="color:black"><input type="text" name= "price"><br></p>
         Description:
       <br>e.g.: good condition, used, new, fair condition, etc (50 characters max) <br>
         <p style="color:black"><textarea name="description" rows="5" cols="30">
