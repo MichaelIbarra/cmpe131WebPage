@@ -12,7 +12,7 @@ $lookBID = $_SESSION['bid'];
 if ($conn->query($sql) === TRUE) {
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
         	window.alert('Book is bought and has been deleted from the database')
-          window.location.href='searchA.php'
+          window.location.href='search.php'
         	</SCRIPT>");
 } else {
     echo "Error buying book : " . $conn->error;

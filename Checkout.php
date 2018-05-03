@@ -63,6 +63,7 @@ session_start();
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
         <input type="submit" value="Continue to checkout" class="btn">
+        <p><a href="https://www.paypal.com/us/home">Pay with PayPal</a></p>
       </form>
     </div>
   </div>

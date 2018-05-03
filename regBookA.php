@@ -82,19 +82,18 @@ else
     <h1>
       <font size = "15" color = "White" font face = "Arial Black">
       Register a Book
-		</font></h1><font color="#FFFFFF">
+      </font></h1><font color="#FFFFFF">
       <form method="POST" action="connectBook.php">
       	Book Name : <p style="color:black"><input type="text" name= "bookName"><br></p>
       	ISBN number : <p style="color:black"><input type="text" name= "ISBNNumber"><br></p>
-				Price : <p style="color:black"><input type="text" name= "price"><br></p>
         Description:
       <br>e.g.: good condition, used, new, fair condition, etc (50 characters max) <br>
         <p style="color:black"><textarea name="description" rows="5" cols="30">
         </textarea></p>
         <br>
-
+      	Price : <p style="color:black"><input type=text name= "price"><br></p>
         <p style="color:black"><input type="submit" value="Submit"></p>
-        </form>
+        </form></font>
     </div>
     <!-- ################################################################################################ -->
   </div>
@@ -156,7 +155,108 @@ else
 <div class="wrapper row3">
   <section class="hoc container clear">
     <!-- ################################################################################################ -->
-    <div class="btmspace-50 center">
+    
+    <?php
+//get first 3 IDs
+
+    $host = "localhost";
+		$username = "root";
+        $pw = "";
+		$dbname = "Registration";
+    //create connection
+			$conn = new mysqli ($host, $username, $pw, $dbname);
+				if(mysqli_connect_error())
+				{
+					die('connect Error ('.mysqli_connect_errno().')'
+						.mysqli_connect_error());
+        } 
+		else{
+
+          $query = $conn->query("SELECT * FROM books WHERE BID >= 0 ORDER BY BID LIMIT 3;") or die("less than 3 items :/");
+		  
+              $query->data_seek(0);
+              $row = $query->fetch_array(MYSQLI_ASSOC);
+			  $title=$row['bookName'];
+			  $isbn=$row['ISBNNumber'];
+			  $desc=$row['description'];
+			  $price=$row['price'];
+				$saveBID=$row['BID'];
+				$zip=$row['zipcode'];
+$html = <<<HTML
+<ul class="nospace group">
+      <li class="one_third first">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://ashmagautam.files.wordpress.com/2013/11/mcj038257400001.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li>Price: $$price</li>
+			  <li>Description: $desc</li>
+              <li>Zipcode:$zip</li>
+            </ul>
+            <h6 class="heading font-x1">Title: $title</h6>
+			<h6 class="heading font-x1">ISBN Number: $isbn</h6>
+			<p><a href="bookDetail.php?bid=$saveBID">More details &raquo;</a></p>
+			</div>
+        </article>
+      </li>
+HTML;
+			echo $html;
+			
+			$query->data_seek(1);
+              $row = $query->fetch_array(MYSQLI_ASSOC);
+			  $title=$row['bookName'];
+			  $isbn=$row['ISBNNumber'];
+			  $desc=$row['description'];
+			  $price=$row['price'];
+				$saveBID=$row['BID'];
+				$zip=$row['zipcode'];
+$html = <<<HTML
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://ashmagautam.files.wordpress.com/2013/11/mcj038257400001.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li>Price: $$price</li>
+			  <li>Description: $desc</li>
+              <li>Zipcode:$zip</li>
+            </ul>
+            <h6 class="heading font-x1">Title: $title</h6>
+			<h6 class="heading font-x1">ISBN Number: $isbn</h6>
+			<p><a href="bookDetail.php?bid=$saveBID">More details &raquo;</a></p>
+			</div>
+        </article>
+      </li>
+HTML;
+              echo $html;
+			  
+$query->data_seek(2);
+              $row = $query->fetch_array(MYSQLI_ASSOC);
+			  $title=$row['bookName'];
+			  $isbn=$row['ISBNNumber'];
+			  $desc=$row['description'];
+			  $price=$row['price'];
+				$saveBID=$row['BID'];
+				$zip=$row['zipcode'];
+$html = <<<HTML
+      <li class="one_third">
+        <article class="excerpt"><a href="#"><img class="inspace-10 borderedbox" src="https://ashmagautam.files.wordpress.com/2013/11/mcj038257400001.jpg" alt=""></a>
+          <div class="excerpttxt">
+            <ul>
+              <li>Price: $$price</li>
+			  <li>Description: $desc</li>
+              <li>Zipcode:$zip</li>
+            </ul>
+            <h6 class="heading font-x1">Title: $title</h6>
+			<h6 class="heading font-x1">ISBN Number: $isbn</h6>
+			<p><a href="bookDetail.php?bid=$saveBID">More details &raquo;</a></p>
+			</div>
+        </article>
+      </li>
+</ul>
+HTML;
+              echo $html;
+		}
+
+?>
+    <!--<div class="btmspace-50 center">
       <h2>See our textbooks collection</h2>
       <p>Just in case you don't have your ISBN number</p>
     </div>
